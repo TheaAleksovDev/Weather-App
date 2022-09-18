@@ -15,6 +15,9 @@
 .lon{
     font-size: 10px;
 }
+.state{
+    font-size: 30px;
+}
 .selected{
     background-color: red;
 }
