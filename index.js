@@ -72,31 +72,64 @@ cityOptions.addEventListener('click', e => {
     .then(data => console.log(data))
     .then(()=>{
         currentWeather.innerHTML = `
-    <h1>${currentCity.city}</h1>
-    ${currentCity.state ? `<h2>${currentCity.state}</h2>` : ""} 
-    <h3>${weekday}, ${month} ${day}   ${hours}:${mins}</h3>
-    <div class="img"></div>
-    <h1>${forecast.list[0].main.temp}<span>°C</span></h1>
-    <h2>${forecast.list[0].weather[0].main}</h2>
+    <h1 class="city">${currentCity.city}</h1>
+    ${currentCity.state ? `<h2 class="state">${currentCity.state}</h2>` : ""} 
+    <h3 class="time">${weekday}, ${month} ${day}   ${hours}:${mins}</h3>
+    <div class="imp">
+        <img class="img" src="http://openweathermap.org/img/wn/${forecast.list[0].weather[0].icon}@2x.png"><img>
+        <h1 class="temp">${Math.round(forecast.list[0].main.temp)}<span class="cels">°C</span></h1>
+    </div>
+    <h2 class="temp-desc">${forecast.list[0].weather[0].main}</h2>
     <div class="more-info">
-        <div class="pop">
-            <h2>${forecast.list[0].main.feels_like}<span>°C</span></h2>
-            <h2>Feels like</h2>
+        <div class="pop feels-like">
+            <h2 class="txt-tag">${Math.round(forecast.list[0].main.feels_like)}<span>°C</span></h2>
+            <h2 class="tag">Feels like</h2>
         </div>
-        <div class="pop">
-            <h2>${forecast.list[0].pop * 100}%</h2>
-            <h2>Precipitation</h2>
+        <div class="pop pop">
+            <h2 class="txt-tag">${forecast.list[0].pop * 100}<span>%</span></h2>
+            <h2 class="tag">Precipitation</h2>
         </div>
-        <div class="pop">
-            <h2>${forecast.list[0].wind.speed}m/s</h2>
-            <h2>Wind</h2>
+        <div class="pop wind">
+            <h2 class="txt-tag">${forecast.list[0].wind.speed}<span>m/s</span></h2>
+            <h2 class="tag">Wind</h2>
         </div>
     </div>
     `
     console.log(forecast)
     })
+    .then(()=>{
+        forecast.innerHTML = ""
+              forecastSection.innerHTML += `<div class="day-section">
+        <div class="one-day day1">
+            <h2>${weekdays[date.getDay() +1]>7 ? 0 : weekdays[date.getDay() +1]}, ${month} ${day}</h2>
+            <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
+        </div>          
+        </div>`
+              forecastSection.innerHTML += `<div class="day-section">
+        <div class="one-day day2">
+            <h2>${weekdays[date.getDay() +2]>7 ? 0 : weekdays[date.getDay() +2]}, ${month} ${day}</h2>
+            <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
+        </div>          
+        </div>`
+              forecastSection.innerHTML += `<div class="day-section">
+        <div class="one-day day3">
+            <h2>${weekdays[date.getDay() +3]>7 ? 0 : weekdays[date.getDay() +3]}, ${month} ${day}</h2>
+            <h1>${Math.floor(forecast.list[3].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[3].main.temp_max)}<span>°C</span></h1>
+        </div>  `
+                 forecastSection.innerHTML += `<div class="day-section">
+        <div class="one-day day4">
+            <h2>${weekdays[date.getDay() +4]>7 ? 0 : weekdays[date.getDay() +4]}, ${month} ${day}</h2>
+            <h1>${Math.floor(forecast.list[4].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[4].main.temp_max)}<span>°C</span></h1>
+        </div>          
+        </div>`        
 
-})
+           
+    }
+    
+        
+)})
+
+
 
 
 

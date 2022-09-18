@@ -1,10 +1,51 @@
+.body{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.forecast{
+    font-family: 'Roboto', sans-serif;
+    width: 90%;
+    margin-top: 70px;
+}
+.input{
+    margin-top: 5px;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+input{
+    width: 80%;
+    border: none;
+    font-size: 20px;
+    outline: none;
+}
+.search-btn{
+    background: none;
+    border: none;
+}
+.fa-magnifying-glass{
+    font-size: 23px;
+}
 .city-info{
+    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: row;
     align-items: center;
 
 }
 .city-options{
+    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -15,9 +56,103 @@
 .lon{
     font-size: 10px;
 }
-.state{
-    font-size: 30px;
-}
 .selected{
     background-color: red;
+}
+.current-weather{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    width: 90%;
+}
+.cels{
+    font-size: 30px;
+}
+.img{
+    width: 110px;
+    height: 110px;
+}
+.more-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: 10px 0;
+}
+.more-info div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    margin: 8px 10px;
+}
+.txt-tag{
+    font-size: 25px;
+    font-weight: 900;
+}
+.pop h2{
+    margin: 3px 0;
+}
+.tag{
+    margin: 0;
+    font-size: 12px;
+}
+.city{
+    margin-bottom: 5px;
+    font-weight: 900;
+}
+.state{
+    margin: 0;
+    font-size: 20px;
+}
+.time{
+    margin: 3px 0;
+    font-size: 15px;
+}
+.temp{
+    margin: 5px 0;
+    font-size: 50px;
+    display: flex;
+    align-items:flex-start;
+    font-weight: 900;
+}
+span{
+    font-size: 15px;
+}
+.temp-desc{
+    margin: 0;
+    font-size: 18px;
+}
+.feels-like h2{
+    display: flex;
+    align-items: flex-start;
+}
+.one-day{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: aqua;
+    margin: 10px 0;
+    padding: 0 10px;
+
+}
+.one-day h1{
+    font-size: 20px;
+}
+.one-day h2 {
+    font-size: 15px;
+}
+.imp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: spx;
 }
