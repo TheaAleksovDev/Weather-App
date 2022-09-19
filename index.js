@@ -98,33 +98,65 @@ cityOptions.addEventListener('click', e => {
     `
     console.log(forecast)
     })
+    // .then(()=>{
+    //     forecast.innerHTML = ""
+    //           forecastSection.innerHTML += `<div class="day-section">
+    //     <div class="one-day day1">
+    //         <h2>${weekdays[date.getDay() +1]>7 ? 0 : weekdays[date.getDay() +1]}, ${month} ${day}</h2>
+    //         <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
+    //     </div>          
+    //     </div>`
+    //           forecastSection.innerHTML += `<div class="day-section">
+    //     <div class="one-day day2">
+    //         <h2>${weekdays[date.getDay() +2]>7 ? 0 : weekdays[date.getDay() +2]}, ${month} ${day}</h2>
+    //         <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
+    //     </div>          
+    //     </div>`
+    //           forecastSection.innerHTML += `<div class="day-section">
+    //     <div class="one-day day3">
+    //         <h2>${weekdays[date.getDay() +3]>7 ? 0 : weekdays[date.getDay() +3]}, ${month} ${day}</h2>
+    //         <h1>${Math.floor(forecast.list[3].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[3].main.temp_max)}<span>°C</span></h1>
+    //     </div>  `
+    //              forecastSection.innerHTML += `<div class="day-section">
+    //     <div class="one-day day4">
+    //         <h2>${weekdays[date.getDay() +4]>7 ? 0 : weekdays[date.getDay() +4]}, ${month} ${day}</h2>
+    //         <h1>${Math.floor(forecast.list[4].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[4].main.temp_max)}<span>°C</span></h1>
+    //     </div>          
+    //     </div>`                 
+    // }
+    // )
     .then(()=>{
-        forecast.innerHTML = ""
-              forecastSection.innerHTML += `<div class="day-section">
-        <div class="one-day day1">
-            <h2>${weekdays[date.getDay() +1]>7 ? 0 : weekdays[date.getDay() +1]}, ${month} ${day}</h2>
-            <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
+        for(i=1; i<5 ; i++){             
+            forecast.innerHTML = ""
+              forecastSection.innerHTML += `<div class="day-section day${i}">
+        <div class="one-day">
+            <h2>${weekdays[date.getDay() +i]>7 ? 0 : weekdays[date.getDay() +i]}, ${month} ${day +i}</h2>
         </div>          
         </div>`
-              forecastSection.innerHTML += `<div class="day-section">
-        <div class="one-day day2">
-            <h2>${weekdays[date.getDay() +2]>7 ? 0 : weekdays[date.getDay() +2]}, ${month} ${day}</h2>
-            <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
-        </div>          
-        </div>`
-              forecastSection.innerHTML += `<div class="day-section">
-        <div class="one-day day3">
-            <h2>${weekdays[date.getDay() +3]>7 ? 0 : weekdays[date.getDay() +3]}, ${month} ${day}</h2>
-            <h1>${Math.floor(forecast.list[3].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[3].main.temp_max)}<span>°C</span></h1>
-        </div>  `
-                 forecastSection.innerHTML += `<div class="day-section">
-        <div class="one-day day4">
-            <h2>${weekdays[date.getDay() +4]>7 ? 0 : weekdays[date.getDay() +4]}, ${month} ${day}</h2>
-            <h1>${Math.floor(forecast.list[4].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[4].main.temp_max)}<span>°C</span></h1>
-        </div>          
-        </div>`                 
-    }       
-)})
+        
+        }
+
+    })
+    .then(()=>{
+        function newDays(){
+            let newDays = []
+                for(i=0 ; i<forecast.list.length; i++){
+                    if(forecast.list[i].dt_txt.includes("00:00:00")){
+                        newDays = forecast.list.slice(i,forecast.list.length)
+                        break
+                    }
+                }
+                console.log(newDays)
+        }
+        const firstDayMax = []
+        
+
+            document.querySelector(".day1").addEventListener('click',()=>{newDays()})
+    })
+})
+
+
+
 console.log(pickIcon("03d"))
 function pickIcon(weather){
     switch(weather){
@@ -163,3 +195,11 @@ function pickIcon(weather){
             
     }
 }
+const arr = ["one","two","three","four","five","six"]
+let newarr = []
+for(i=0 ; i<arr.length; i++){
+                    if(arr[i].includes("four")){
+                        newarr = arr.splice(i,arr.length)
+                    }
+                }
+                console.log(newarr)
