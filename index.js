@@ -71,12 +71,13 @@ cityOptions.addEventListener('click', e => {
     .then(data => forecast = data)
     .then(data => console.log(data))
     .then(()=>{
+        const tempDesc = forecast.list[0].weather[0].main
         currentWeather.innerHTML = `
     <h1 class="city">${currentCity.city}</h1>
     ${currentCity.state ? `<h2 class="state">${currentCity.state}</h2>` : ""} 
     <h3 class="time">${weekday}, ${month} ${day}   ${hours}:${mins}</h3>
     <div class="imp">
-        <img class="img" src="http://openweathermap.org/img/wn/${forecast.list[0].weather[0].icon}@2x.png"><img>
+        <div class="img">${pickIcon(forecast.list[0].weather[0].icon)}<div>
         <h1 class="temp">${Math.round(forecast.list[0].main.temp)}<span class="cels">°C</span></h1>
     </div>
     <h2 class="temp-desc">${forecast.list[0].weather[0].main}</h2>
@@ -121,15 +122,44 @@ cityOptions.addEventListener('click', e => {
             <h2>${weekdays[date.getDay() +4]>7 ? 0 : weekdays[date.getDay() +4]}, ${month} ${day}</h2>
             <h1>${Math.floor(forecast.list[4].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[4].main.temp_max)}<span>°C</span></h1>
         </div>          
-        </div>`        
-
-           
-    }
-    
-        
+        </div>`                 
+    }       
 )})
-
-
-
-
-
+console.log(pickIcon("03d"))
+function pickIcon(weather){
+    switch(weather){
+        case '01d':
+            return `<i class="fa-solid fa-sun"></i>`;
+        case 'o1n':
+            return `<i class="fa-solid fa-moon"></i>`;
+        case '02d':
+            return `<i class="fa-solid fa-cloud-sun"></i>`;
+        case '02n':
+            return `<i class="fa-solid fa-cloud-moon"></i>`;
+        case '03d':
+            return `<i class="fa-solid fa-cloud"></i>`;
+        case '03n':
+            return `<i class="fa-solid fa-cloud"></i>`;
+        case '09n':
+            return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+        case '09d':
+            return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+        case '10d':
+            return `<i class="fa-solid fa-cloud-sun-rain"></i>`
+        case '10n':
+            return `<i class="fa-solid fa-cloud-moon-rain"></i>`
+        case '11d':
+            return `<i class="fa-solid fa-cloud-bolt"></i>`;
+        case '11n':
+            return `<i class="fa-solid fa-cloud-bolt"></i>`;
+        case '13d':
+            return `<i class="fa-solid fa-snowflake"></i>`;
+        case '13n':
+            return `<i class="fa-solid fa-snowflake"></i>`;
+        case '50d':
+            return `<i class="fa-solid fa-smog"></i>`;
+        case '50n':
+            return `<i class="fa-solid fa-smog"></i>`;
+            
+    }
+}
