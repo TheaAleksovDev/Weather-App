@@ -1,23 +1,27 @@
+
  .body{
     font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .app{
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 .forecast{
     font-family: 'Roboto', sans-serif;
-    width: 90%;
+    width: 80%;
     margin-top: 15px;
 
 }
 .input{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
     border: 3px solid black;
@@ -50,9 +54,7 @@ input{
     display: flex;
     flex-direction: column;
 }
-.city-info h1{
 
-}
 .lat,
 .lon{
     font-size: 10px;
@@ -176,4 +178,12 @@ span{
     justify-content: center;
     align-items: center;
     
+}
+.day-forecast {
+    position: absolute;
+    width: 100vh;
+    height: 100vh;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
 }

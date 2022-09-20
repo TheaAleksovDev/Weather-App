@@ -4,6 +4,7 @@ let cityOptions = document.querySelector(".city-options")
 let cityInfo = document.querySelectorAll(".city-info")
 let forecastSection = document.querySelector(".forecast")
 let currentWeather = document.querySelector(".current-weather")
+let dayForecast = document.querySelector(".day-forecast")
 
 let cityInformations 
 let forecast
@@ -48,7 +49,7 @@ function search(){
             }
         })  
 }
-
+let newDaysArr = [] 
 cityOptions.addEventListener('click', e => {
     // console.log(e.target.parentNode)
     const selectedOption = e.target
@@ -71,6 +72,7 @@ cityOptions.addEventListener('click', e => {
     .then(data => forecast = data)
     .then(data => console.log(data))
     .then(()=>{
+        console.log(forecast.list[0].weather[0].icon)
         const tempDesc = forecast.list[0].weather[0].main
         currentWeather.innerHTML = `
     <h1 class="city">${currentCity.city}</h1>
@@ -87,8 +89,8 @@ cityOptions.addEventListener('click', e => {
             <h2 class="tag">Feels like</h2>
         </div>
         <div class="pop pop">
-            <h2 class="txt-tag">${forecast.list[0].pop * 100}<span>%</span></h2>
-            <h2 class="tag">Precipitation</h2>
+            <h2 class="txt-tag">${forecast.list[0].main.humidity}<span>%</span></h2>
+            <h2 class="tag">Humidity</h2>
         </div>
         <div class="pop wind">
             <h2 class="txt-tag">${forecast.list[0].wind.speed}<span>m/s</span></h2>
@@ -138,31 +140,85 @@ cityOptions.addEventListener('click', e => {
 
     })
     .then(()=>{
-        function newDays(){
-            let newDays = []
-                for(i=0 ; i<forecast.list.length; i++){
-                    if(forecast.list[i].dt_txt.includes("00:00:00")){
-                        newDays = forecast.list.slice(i,forecast.list.length)
-                        break
-                    }
-                }
-                console.log(newDays)
-        }
-        const firstDayMax = []
         
 
-            document.querySelector(".day1").addEventListener('click',()=>{newDays()})
+        for(i=0 ; i<forecast.list.length; i++){
+            if(forecast.list[i].dt_txt.includes("00:00:00")){
+                newDaysArr = forecast.list.slice(i,forecast.list.length)
+                break
+            }
+        }
+            console.log(newDaysArr)    
+        function getDay1(){
+            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
+            <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
+            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+           for(let i=0; i<9; i++){
+            dayForecast.style.display="flex"
+           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+        }
+        document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
+            dayForecast.style.display = "none"
+        })
+    }
+    function getDay2(){
+            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
+            <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
+            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+           for(let i=8; i<17; i++){
+            dayForecast.style.display="flex"
+           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+        }
+        document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
+            dayForecast.style.display = "none"
+        })
+    }
+    function getDay3(){
+            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
+            <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
+            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+           for(let i=16; i<25; i++){
+            dayForecast.style.display="flex"
+           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+        }
+        document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
+            dayForecast.style.display = "none"
+        })
+    }
+    function getDay4(){
+            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
+            <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
+            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+           for(let i=24; i<32; i++){
+            dayForecast.style.display="flex"
+           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+        }
+        document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
+            dayForecast.style.display = "none"
+        })
+    }
+    
+        const firstDayMax = []
+        document.querySelector(".day1").addEventListener('click',()=>{getDay1()})
+        document.querySelector(".day2").addEventListener('click',()=>{getDay2()})
+        document.querySelector(".day3").addEventListener('click',()=>{getDay3()})
+        document.querySelector(".day4").addEventListener('click',()=>{getDay4()})
+        
+        
     })
 })
 
 
 
-console.log(pickIcon("03d"))
 function pickIcon(weather){
     switch(weather){
         case '01d':
             return `<i class="fa-solid fa-sun"></i>`;
-        case 'o1n':
+        case '01n':
             return `<i class="fa-solid fa-moon"></i>`;
         case '02d':
             return `<i class="fa-solid fa-cloud-sun"></i>`;
@@ -171,6 +227,10 @@ function pickIcon(weather){
         case '03d':
             return `<i class="fa-solid fa-cloud"></i>`;
         case '03n':
+            return `<i class="fa-solid fa-cloud"></i>`;
+        case '04d':
+            return `<i class="fa-solid fa-cloud"></i>`;
+        case '04n':
             return `<i class="fa-solid fa-cloud"></i>`;
         case '09n':
             return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
@@ -191,8 +251,7 @@ function pickIcon(weather){
         case '50d':
             return `<i class="fa-solid fa-smog"></i>`;
         case '50n':
-            return `<i class="fa-solid fa-smog"></i>`;
-            
+            return `<i class="fa-solid fa-smog"></i>`;            
     }
 }
 const arr = ["one","two","three","four","five","six"]
@@ -203,3 +262,12 @@ for(i=0 ; i<arr.length; i++){
                     }
                 }
                 console.log(newarr)
+
+function dayOnDate(day, month, year) {
+	const weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+	monthDay = [ 1, 4, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6];
+	years = year-1900;
+	day = ( monthDay[month-1] + years + Math.floor(years/4) + day )%7;
+	return weekdays[day];
+}
+console.log(dayOnDate(21,09,2022))
