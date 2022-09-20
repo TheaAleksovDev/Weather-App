@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 95%;
 }
 .forecast{
     font-family: 'Roboto', sans-serif;
@@ -21,6 +21,7 @@
 
 }
 .input{
+    margin-top: 10px;
     width: 90%;
     display: flex;
     justify-content: center;
@@ -153,11 +154,13 @@ span{
     display: flex;
     align-items: flex-start;
 }
+
 .one-day{
+    
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    text-align: center;
     width: 100%;
     border-radius: 20px;
     background-color: aqua;
@@ -180,10 +183,46 @@ span{
     
 }
 .day-forecast {
+    font-family: 'Roboto', sans-serif;
     position: absolute;
-    width: 100vh;
+    width: 100%;
     height: 100vh;
     background-color: aquamarine;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hourly{
+    font-size: 25px;
+    width: 70%;
+    text-align: left;
+    position: relative;
+}
+.humidityy{
+    position: absolute;
+    right: 25px;
+    font-size: 20px;
+}
+.fa-droplet{
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+.time{
+    margin-right: 20px;
+}
+.day{
+    margin:0 ;
+}
+.date{
+    font-size: 25px;
+    margin-top: -20px;
+    
+}
+.fa-circle-arrow-left{
+    position: absolute;
+    left: 18px;
+    top: 21px;
+    font-size: 30px;
 }

@@ -150,52 +150,52 @@ cityOptions.addEventListener('click', e => {
         }
             console.log(newDaysArr)    
         function getDay1(){
-            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            const date = newDaysArr[0].dt_txt.split(" ")[0].split("-")
             dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
             <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
-            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+            <h1 class="date">${newDaysArr[0].dt_txt.split(" ")[0]}</h1>`
            for(let i=0; i<9; i++){
             dayForecast.style.display="flex"
-           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+           dayForecast.innerHTML += `<h1 class="hourly"><span class="time">${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
         }
         document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
             dayForecast.style.display = "none"
         })
     }
     function getDay2(){
-            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            const date = newDaysArr[8].dt_txt.split(" ")[0].split("-")
             dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
             <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
-            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+            <h1 class="date">${newDaysArr[8].dt_txt.split(" ")[0]}</h1>`
            for(let i=8; i<17; i++){
             dayForecast.style.display="flex"
-           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+           dayForecast.innerHTML += `<h1 class="hourly"><span class="time">${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
         }
         document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
             dayForecast.style.display = "none"
         })
     }
     function getDay3(){
-            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            const date = newDaysArr[16].dt_txt.split(" ")[0].split("-")
             dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
             <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
-            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+            <h1 class="date"> ${newDaysArr[16].dt_txt.split(" ")[0]}</h1>`
            for(let i=16; i<25; i++){
             dayForecast.style.display="flex"
-           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+           dayForecast.innerHTML += `<h1 class="hourly"><span class="time">${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
         }
         document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
             dayForecast.style.display = "none"
         })
     }
     function getDay4(){
-            const date = newDaysArr[i].dt_txt.split(" ")[0].split("-")
+            const date = newDaysArr[24].dt_txt.split(" ")[0].split("-")
             dayForecast.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i>
             <h1 class="day">${dayOnDate(parseInt(date[2]),parseInt(date[1]),parseInt(date[0]))} Forecast<h1>
-            <h1>${newDaysArr[i].dt_txt.split(" ")[0]}</h1>`
+            <h1 class="date">${newDaysArr[24].dt_txt.split(" ")[0]}</h1>`
            for(let i=24; i<32; i++){
             dayForecast.style.display="flex"
-           dayForecast.innerHTML += `<h1><span>${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
+           dayForecast.innerHTML += `<h1 class="hourly"><span class="time">${newDaysArr[i].dt_txt.split(" ")[1]}</span>${newDaysArr[i].main.temp_min}°C ${pickIcon(newDaysArr[i].weather[0].icon)}     <span class="humidityy">${forecast.list[i].main.humidity}%</span> <i class="fa-solid fa-droplet"></i></h1>`                
         }
         document.querySelector(".fa-circle-arrow-left").addEventListener('click',()=>{
             dayForecast.style.display = "none"
