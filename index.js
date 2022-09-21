@@ -6,7 +6,7 @@ let forecastSection = document.querySelector(".forecast")
 let currentWeather = document.querySelector(".current-weather")
 let dayForecast = document.querySelector(".day-forecast")
 const app = document.querySelector(".app")
-const title = document.querySelector(".apptitle")
+const titlee = document.querySelector(".apptitle")
 
 let cityInformations 
 let forecast
@@ -39,7 +39,7 @@ if(e.key === "Enter"){
 })
 searchBtn.addEventListener('click',()=>{search()})
 function search(){
-    title.style.display="none"
+    titlee.style.display="none"
     currentWeather.style.display="none"
     forecastSection.style.display="none"
     cityOptions.textContent = ""
