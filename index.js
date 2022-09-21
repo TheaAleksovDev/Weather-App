@@ -84,7 +84,6 @@ cityOptions.addEventListener('click', e => {
     .then(data => forecast = data)
     .then(data => console.log(data))
     .then(()=>{
-        console.log(forecast.list[0].weather[0].icon)
         const tempDesc = forecast.list[0].weather[0].main
         currentWeather.innerHTML = `
     <h1 class="currcity">${currentCity.city}</h1>
