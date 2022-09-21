@@ -44,7 +44,7 @@ function search(){
     forecastSection.style.display="none"
     cityOptions.textContent = ""
     let city = cityInput.value
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${weather.key}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${weather.key}`)
         .then(res => res.json())
         .then(data => cityInformations = data)
         .then(() => console.log(cityInformations))
