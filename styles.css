@@ -7,6 +7,12 @@
     position: relative;
     
 }
+.apptitle{
+    font-family: 'Roboto', sans-serif;
+    width: 80%;
+    text-align: center;
+    font-size: 4rem;
+}
 .app{
     position: absolute;
     display: flex;
