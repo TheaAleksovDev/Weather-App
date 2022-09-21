@@ -5,6 +5,7 @@ let cityInfo = document.querySelectorAll(".city-info")
 let forecastSection = document.querySelector(".forecast")
 let currentWeather = document.querySelector(".current-weather")
 let dayForecast = document.querySelector(".day-forecast")
+const app = document.querySelector(".app")
 
 let cityInformations 
 let forecast
@@ -29,8 +30,16 @@ let currentCity = {
     state: ""
 }
 
+cityInput.addEventListener("keypress",(e)=>{
+if(e.key === "Enter"){
+    e.preventDefault;
+    search()
+}
+})
 searchBtn.addEventListener('click',()=>{search()})
 function search(){
+    currentWeather.style.display="none"
+    forecastSection.style.display="none"
     cityOptions.textContent = ""
     let city = cityInput.value
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${weather.key}`)
@@ -41,9 +50,9 @@ function search(){
             for(let i=0; i<cityInformations.length; i++){
                 cityOptions.innerHTML += `<div class="city-info">
                 <h1 class="city">${cityInformations[i].name}</h1>                
-                ${cityInformations[i].state ? `<h1>, </h1><h1 class="state">${cityInformations[i].state}</h1>` : ""}               
+                ${cityInformations[i].state ? `<h1 class="state">|${cityInformations[i].state}|</h1><br>` : "<br>"}               
                 <h1 class="lat">${cityInformations[i].lat}</h1>
-                <h1 class="lon">${cityInformations[i].lon}</h1>
+                <br><h1 class="lon">${cityInformations[i].lon}</h1>
                 </div>
                 `
             }
@@ -51,15 +60,16 @@ function search(){
 }
 let newDaysArr = [] 
 cityOptions.addEventListener('click', e => {
-    // console.log(e.target.parentNode)
+    currentWeather.style.display="flex"
+    forecastSection.style.display="flex"
+    
     const selectedOption = e.target
-    currentCity.city = selectedOption.textContent
+    currentCity.city = selectedOption.parentNode.querySelector(".city").textContent
     currentCity.lat = selectedOption.parentNode.querySelector(".lat").textContent
     currentCity.lon = selectedOption.parentNode.querySelector(".lon").textContent
     currentCity.state = selectedOption.parentNode.querySelector(".state") ? selectedOption.parentNode.querySelector(".state").textContent : ""
     cityOptions.innerHTML = ""
 
-    console.log(selectedOption.parentNode)
     console.log(currentCity)
     
     // fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${currentCity.lat}&lon=${currentCity.lon}&appid=${weather.key}`)
@@ -75,7 +85,7 @@ cityOptions.addEventListener('click', e => {
         console.log(forecast.list[0].weather[0].icon)
         const tempDesc = forecast.list[0].weather[0].main
         currentWeather.innerHTML = `
-    <h1 class="city">${currentCity.city}</h1>
+    <h1 class="currcity">${currentCity.city}</h1>
     ${currentCity.state ? `<h2 class="state">${currentCity.state}</h2>` : ""} 
     <h3 class="time">${weekday}, ${month} ${day}   ${hours}:${mins}</h3>
     <div class="imp">
@@ -100,39 +110,14 @@ cityOptions.addEventListener('click', e => {
     `
     console.log(forecast)
     })
-    // .then(()=>{
-    //     forecast.innerHTML = ""
-    //           forecastSection.innerHTML += `<div class="day-section">
-    //     <div class="one-day day1">
-    //         <h2>${weekdays[date.getDay() +1]>7 ? 0 : weekdays[date.getDay() +1]}, ${month} ${day}</h2>
-    //         <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
-    //     </div>          
-    //     </div>`
-    //           forecastSection.innerHTML += `<div class="day-section">
-    //     <div class="one-day day2">
-    //         <h2>${weekdays[date.getDay() +2]>7 ? 0 : weekdays[date.getDay() +2]}, ${month} ${day}</h2>
-    //         <h1>${Math.floor(forecast.list[2].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[2].main.temp_max)}<span>°C</span></h1>
-    //     </div>          
-    //     </div>`
-    //           forecastSection.innerHTML += `<div class="day-section">
-    //     <div class="one-day day3">
-    //         <h2>${weekdays[date.getDay() +3]>7 ? 0 : weekdays[date.getDay() +3]}, ${month} ${day}</h2>
-    //         <h1>${Math.floor(forecast.list[3].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[3].main.temp_max)}<span>°C</span></h1>
-    //     </div>  `
-    //              forecastSection.innerHTML += `<div class="day-section">
-    //     <div class="one-day day4">
-    //         <h2>${weekdays[date.getDay() +4]>7 ? 0 : weekdays[date.getDay() +4]}, ${month} ${day}</h2>
-    //         <h1>${Math.floor(forecast.list[4].main.temp_min)}<span>°C</span> / ${Math.ceil(forecast.list[4].main.temp_max)}<span>°C</span></h1>
-    //     </div>          
-    //     </div>`                 
-    // }
-    // )
+    
     .then(()=>{
-        for(i=1; i<5 ; i++){             
-            forecast.innerHTML = ""
+        forecastSection.innerHTML = ""
+        for(i=1; i<5 ; i++){            
+            
               forecastSection.innerHTML += `<div class="day-section day${i}">
         <div class="one-day">
-            <h2>${weekdays[date.getDay() +i]>7 ? 0 : weekdays[date.getDay() +i]}, ${month} ${day +i}</h2>
+            <h2>${date.getDay() +i===7 ? weekdays[0]: weekdays[date.getDay() +i]}, ${month} ${day +i}</h2>
         </div>          
         </div>`
         
@@ -217,41 +202,41 @@ cityOptions.addEventListener('click', e => {
 function pickIcon(weather){
     switch(weather){
         case '01d':
-            return `<i class="fa-solid fa-sun"></i>`;
+            return `<i class="fa-solid weather fa-sun"></i>`;
         case '01n':
-            return `<i class="fa-solid fa-moon"></i>`;
+            return `<i class="fa-solid weather fa-moon"></i>`;
         case '02d':
-            return `<i class="fa-solid fa-cloud-sun"></i>`;
+            return `<i class="fa-solid weather fa-cloud-sun"></i>`;
         case '02n':
-            return `<i class="fa-solid fa-cloud-moon"></i>`;
+            return `<i class="fa-solid weather fa-cloud-moon"></i>`;
         case '03d':
-            return `<i class="fa-solid fa-cloud"></i>`;
+            return `<i class="fa-solid weather fa-cloud"></i>`;
         case '03n':
-            return `<i class="fa-solid fa-cloud"></i>`;
+            return `<i class="fa-solid weather fa-cloud"></i>`;
         case '04d':
-            return `<i class="fa-solid fa-cloud"></i>`;
+            return `<i class="fa-solid weather fa-cloud"></i>`;
         case '04n':
-            return `<i class="fa-solid fa-cloud"></i>`;
+            return `<i class="fa-solid weather fa-cloud"></i>`;
         case '09n':
-            return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+            return `<i class="fa-solid weather fa-cloud-showers-heavy"></i>`;
         case '09d':
-            return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+            return `<i class="fa-solid weather fa-cloud-showers-heavy"></i>`;
         case '10d':
-            return `<i class="fa-solid fa-cloud-sun-rain"></i>`
+            return `<i class="fa-solid weather fa-cloud-sun-rain"></i>`
         case '10n':
-            return `<i class="fa-solid fa-cloud-moon-rain"></i>`
+            return `<i class="fa-solid weather fa-cloud-moon-rain"></i>`
         case '11d':
-            return `<i class="fa-solid fa-cloud-bolt"></i>`;
+            return `<i class="fa-solid weather fa-cloud-bolt"></i>`;
         case '11n':
-            return `<i class="fa-solid fa-cloud-bolt"></i>`;
+            return `<i class="fa-solid weather fa-cloud-bolt"></i>`;
         case '13d':
-            return `<i class="fa-solid fa-snowflake"></i>`;
+            return `<i class="fa-solid weather fa-snowflake"></i>`;
         case '13n':
-            return `<i class="fa-solid fa-snowflake"></i>`;
+            return `<i class="fa-solid weather fa-snowflake"></i>`;
         case '50d':
-            return `<i class="fa-solid fa-smog"></i>`;
+            return `<i class="fa-solid weather fa-smog"></i>`;
         case '50n':
-            return `<i class="fa-solid fa-smog"></i>`;            
+            return `<i class="fa-solid weather fa-smog"></i>`;            
     }
 }
 const arr = ["one","two","three","four","five","six"]
