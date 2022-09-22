@@ -118,7 +118,7 @@ cityOptions.addEventListener('click', e => {
             console.log(d+i +" dayy")
               forecastSection.innerHTML += `<div class="day-section day${i}">
         <div class="one-day">
-            <h2>${weekdays[d+i]}</h2>
+            <h2>${weekdays[d+i]}, ${month} ${day +i}</h2>
             
         </div>          
         </div>`
