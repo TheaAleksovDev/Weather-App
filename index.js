@@ -191,7 +191,7 @@ cityOptions.addEventListener('click', e => {
     }
     
         const firstDayMax = []
-        document.querySelector(".day1").addEventListener('click',()=>{getDay1()})
+        document.querySelector(".day0").addEventListener('click',()=>{getDay1()})
         document.querySelector(".day2").addEventListener('click',()=>{getDay2()})
         document.querySelector(".day3").addEventListener('click',()=>{getDay3()})
         document.querySelector(".day4").addEventListener('click',()=>{getDay4()})
