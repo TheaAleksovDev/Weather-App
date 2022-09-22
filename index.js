@@ -16,7 +16,7 @@ const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","S
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 const date = new Date()
 const month = months[date.getMonth()]
-const day = date.getDate()
+let day = date.getDate()
 const weekday = weekdays[date.getDay()]
 const hours = date.getHours()
 const mins = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
@@ -74,10 +74,6 @@ cityOptions.addEventListener('click', e => {
 
     console.log(currentCity)
     
-    // fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${currentCity.lat}&lon=${currentCity.lon}&appid=${weather.key}`)
-    // .then(response => response.json())
-    // .then(data => generalWeather = data)
-    // .then(data => console.log(data));
 
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${currentCity.lat}&lon=${currentCity.lon}&appid=${weather.key}&units=metric`)
     .then(response => response.json())
@@ -111,20 +107,26 @@ cityOptions.addEventListener('click', e => {
     `
     console.log(forecast)
     })
-    
-    .then(()=>{
+
+    .then(()=>{   
         forecastSection.innerHTML = ""
-        for(i=1; i<5 ; i++){            
-            
+        for(i=0; i<4 ; i++){  
+            let d = date.getDay()        
+            if(date.getDay() + i > 6){
+                d = date.getDay()-7;
+            }  
+            console.log(d+i +" dayy")
               forecastSection.innerHTML += `<div class="day-section day${i}">
         <div class="one-day">
-            <h2>${date.getDay() +i===7 ? weekdays[0]: weekdays[date.getDay() +i]}, ${month} ${day +i}</h2>
+            <h2>${weekdays[d+i]}</h2>
+            
         </div>          
         </div>`
         
         }
-
+        
     })
+    
     .then(()=>{
         
 
